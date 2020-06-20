@@ -16,7 +16,7 @@ public interface OrderService {
      * @param order
      * @return
      */
-    Boolean createOrder(Order order);
+    Boolean createOrder(Order order) throws Exception;
 
     /**
      * saveAll

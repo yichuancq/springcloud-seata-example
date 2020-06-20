@@ -2,10 +2,12 @@ package com.example.stock.service;
 
 import com.example.stock.entity.Stock;
 import com.example.stock.repository.StockRepository;
+import io.seata.core.context.RootContext;
 import lombok.Synchronized;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author yichuan
@@ -27,9 +29,12 @@ public class StockServiceImpl implements StockService {
         return stockRepository.findByGoodsId(goodsId);
     }
 
+    @Transactional // 开启事物
     @Synchronized
     @Override
     public Stock reduceStock(Long goodsId, Integer reduceAmount) {
+
+        log.info("[reduceStock] 当前 XID: {}", RootContext.getXID());
         Stock stock = stockRepository.findByGoodsId(goodsId);
         if (stock.getGoodsId().equals(goodsId) && reduceAmount <= stock.getStockAmount()) {
             Integer leaveAmount = stock.getStockAmount() - reduceAmount;

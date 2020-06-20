@@ -1,6 +1,9 @@
 server:
   port: 18003
 spring:
+  application:
+    name: stock-service
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/test_db?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
@@ -16,3 +19,20 @@ spring:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
         format_sql: false
     show-sql: true
+  #配置分布式事务组,要在spring下
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: my_test2_tx_group
+# Seata 配置项，对应 SeataProperties 类
+#seata:
+#  application-id: ${spring.application.name} # Seata 应用编号，默认为 ${spring.application.name}
+#  tx-service-group: ${spring.application.name}-group # Seata 事务组编号，用于 TC 集群名
+#  # 服务配置项，对应 ServiceProperties 类
+#  service:
+#    # 虚拟组和分组的映射
+#    vgroup-mapping:
+#      product-service-group: default
+#    # 分组和 Seata 服务的映射
+#    grouplist:
+#      default: 127.0.0.1:8091

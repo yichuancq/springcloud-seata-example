@@ -6,7 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,7 +28,7 @@ public class StockController {
      * @return
      */
     @ApiOperation(value = "queryStock", notes = "库存信息查询")
-    @GetMapping(value = "/queryStock")
+    @PostMapping(value = "/queryStock")
     public Stock queryStock(Long goodsId) {
         log.info("库存查询: 商品Id:{}", goodsId);
         return stockService.findByGoodsId(goodsId);
@@ -42,7 +42,7 @@ public class StockController {
      * @return
      */
     @ApiOperation(value = "reduceStock", notes = "库存扣减")
-    @GetMapping(value = "/reduceStock")
+    @PostMapping(value = "/reduceStock")
     public Stock reduceStock(Long goodsId, Integer reduceAmount) {
         log.info("收到库存冲减请求，商品:{}, 数量:{}", goodsId, reduceAmount);
         return stockService.reduceStock(goodsId, reduceAmount);
