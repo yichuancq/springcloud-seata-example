@@ -11,6 +11,7 @@ public interface GoodsService {
 
     /**
      * saveAll
+     *
      * @param goodsLis
      */
     void saveAll(List<Goods> goodsLis);
@@ -18,7 +19,11 @@ public interface GoodsService {
     /**
      * deleteAll
      */
-    void  deleteAll();
+    void deleteAll();
 
+    /**
+     * @param id
+     * @return
+     */
     Goods findOneById(Long id);
 }
