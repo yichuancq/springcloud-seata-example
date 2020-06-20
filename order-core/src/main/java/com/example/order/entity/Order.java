@@ -5,7 +5,6 @@ import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import java.math.BigDecimal;
 
 /**
@@ -30,7 +29,7 @@ public class Order extends BaseEntity {
     private String orderNumber;
 
     /**
-     * 数量
+     * 下单数量
      */
     private Integer amount = 0;
 

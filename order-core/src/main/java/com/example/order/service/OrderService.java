@@ -11,6 +11,14 @@ import java.util.List;
 public interface OrderService {
 
     /**
+     * 生成订单信息
+     *
+     * @param order
+     * @return
+     */
+    Boolean createOrder(Order order);
+
+    /**
      * saveAll
      *
      * @param orderList
@@ -19,6 +27,7 @@ public interface OrderService {
 
 
     void saveOne(Order order);
+
     /**
      * deleteAll
      */

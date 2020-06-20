@@ -11,4 +11,10 @@ public interface StockService {
     Stock saveOne(Stock stock);
 
     Stock findByGoodsId(Long goodsId);
+
+    /**
+     *
+     * @return
+     */
+    Stock reduceStock(Long goodsId,Integer reduceAmount);
 }

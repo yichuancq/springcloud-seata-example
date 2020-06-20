@@ -1,4 +1,4 @@
-package com.example.address.config;
+package com.example.order.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,10 +7,7 @@ import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * @calss name RestTemplateConfig
- * @description: RestTemplateConfig
- * @author: yichuan
- * @create time: 2020/06/06 21:36
+ * @author yichuan
  */
 @Configuration
 public class RestTemplateConfig {

@@ -1,4 +1,6 @@
 package com.example.commons.dto;
 
-public class BaseEntity {
+import java.io.Serializable;
+
+public class BaseEntity implements Serializable {
 }

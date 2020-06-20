@@ -1,1 +1,5 @@
 /.idea/
+/springcloud-seata-example.iml
+/goods-core/target/
+/stock-core/target/
+/order-core/target/

@@ -1,7 +1,7 @@
-package com.example.stock.controller;
+package com.example.order.controller;
 
-import com.example.stock.entity.Stock;
-import com.example.stock.service.StockService;
+import com.example.order.entity.Order;
+import com.example.order.service.OrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,16 +12,22 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @author yichuan
  */
-@Api(value = "库存信息")
+@Api(value = "订单信息")
 @RestController
-@RequestMapping("/stock")
-public class StockController {
+@RequestMapping("/order")
+public class OrderController {
     @Autowired
-    private StockService stockService;
+    private OrderService orderService;
 
-    @ApiOperation(value = "queryStock", notes = "库存信息查询")
-    @GetMapping(value = "/queryStock")
-    public Stock queryStock(Long goodsId) {
-        return stockService.findByGoodsId(goodsId);
+    /**
+     * 生成订单信息
+     *
+     * @param order
+     * @return
+     */
+    @ApiOperation(value = "createOrder", notes = "生成订单信息")
+    @GetMapping(value = "/createOrder")
+    public Boolean createOrder(Order order) {
+        return orderService.createOrder(order);
     }
 }
