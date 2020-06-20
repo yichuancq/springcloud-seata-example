@@ -3,6 +3,7 @@ package com.example.stock.service;
 import com.example.stock.entity.Stock;
 import com.example.stock.repository.StockRepository;
 import lombok.Synchronized;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
  * @author yichuan
  */
 @Service
+@Slf4j
 public class StockServiceImpl implements StockService {
 
     @Autowired
@@ -34,6 +36,7 @@ public class StockServiceImpl implements StockService {
             stock.setStockAmount(leaveAmount);
             stock = stockRepository.save(stock);
         }
+        log.info("商品:{},库存冲减后:{}", stock.getGoodsId(), stock.getStockAmount());
         return stock;
     }
 }

@@ -14,5 +14,5 @@ spring:
           #auto: create
           auto: update
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-        format_sql: true
+        format_sql: false
     show-sql: true
