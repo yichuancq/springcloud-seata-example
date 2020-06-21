@@ -23,7 +23,7 @@ public interface StorageFeignClient {
      * @param reduceAmount
      * @return
      */
-    @PostMapping(value = "/stock/reduceStock")
+    @PostMapping(value = "/stock/reduceStock2")
     public StockDto reduceStock(@RequestParam("goodsId") Long goodsId,
                                 @RequestParam("reduceAmount") Integer reduceAmount);
 

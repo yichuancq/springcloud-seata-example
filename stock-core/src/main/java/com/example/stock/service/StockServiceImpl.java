@@ -44,4 +44,15 @@ public class StockServiceImpl implements StockService {
         log.info("商品:{},库存冲减后:{}", stock.getGoodsId(), stock.getStockAmount());
         return stock;
     }
+
+    /**
+     * @param stockAmount
+     * @param goodsId
+     */
+
+    @Override
+    public void updateStock(Long goodsId, Integer stockAmount) {
+        log.info("[reduceStock] 当前 XID: {}", RootContext.getXID());
+        stockRepository.updateStock(goodsId, stockAmount);
+    }
 }

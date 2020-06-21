@@ -17,4 +17,7 @@ public interface StockService {
      * @return
      */
     Stock reduceStock(Long goodsId,Integer reduceAmount);
+
+    void updateStock(Long goodsId,Integer reduceAmount);
+
 }

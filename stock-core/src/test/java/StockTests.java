@@ -16,6 +16,13 @@ public class StockTests {
     @Autowired
     private StockService stockService;
 
+
+    @Test
+    public void reduceStock() {
+        stockService.updateStock(1L, 1);
+    }
+
+
     @Test
     public void findByGoodsId() {
         Stock stock = stockService.findByGoodsId(1L);

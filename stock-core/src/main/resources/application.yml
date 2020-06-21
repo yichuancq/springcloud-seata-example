@@ -23,16 +23,7 @@ spring:
   cloud:
     alibaba:
       seata:
-        tx-service-group: my_test2_tx_group
-# Seata 配置项，对应 SeataProperties 类
-#seata:
-#  application-id: ${spring.application.name} # Seata 应用编号，默认为 ${spring.application.name}
-#  tx-service-group: ${spring.application.name}-group # Seata 事务组编号，用于 TC 集群名
-#  # 服务配置项，对应 ServiceProperties 类
-#  service:
-#    # 虚拟组和分组的映射
-#    vgroup-mapping:
-#      product-service-group: default
-#    # 分组和 Seata 服务的映射
-#    grouplist:
-#      default: 127.0.0.1:8091
+        application-id: ${spring.application.name} # Seata 应用编号，默认为 ${spring.application.name}
+        #application的值就是注册中心服务的名称，客户端通过这个名称找到事务处理的服务，可以自己定义，但需要注意的是，file:
+        #conf中的，service里边配置的事务组应该跟服务名保持一致
+        tx-service-group: my_test_tx_group

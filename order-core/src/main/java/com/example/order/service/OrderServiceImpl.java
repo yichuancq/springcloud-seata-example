@@ -52,11 +52,7 @@ public class OrderServiceImpl implements OrderService {
             //save order
             orderRepository.save(order);
             //扣减库存
-            StockDto stockDtoLeave = feignClient.reduceStock(order.getGoodsId(), inputStock);
-            if (stockDtoLeave == null) {
-                throw new Exception("库存冲减失败");
-            }
-            log.info("库存冲减后:{}", stockDtoLeave.toString());
+            feignClient.reduceStock(order.getGoodsId(), inputStock);
             return true;
         } catch (Exception exception) {
             log.error("ex:{}", exception.getMessage());

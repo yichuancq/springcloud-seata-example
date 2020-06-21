@@ -47,4 +47,16 @@ public class StockController {
         log.info("收到库存冲减请求，商品:{}, 数量:{}", goodsId, reduceAmount);
         return stockService.reduceStock(goodsId, reduceAmount);
     }
+
+    /**
+     * 库存冲减
+     * @param goodsId
+     * @param reduceAmount
+     */
+    @ApiOperation(value = "reduceStock2", notes = "库存扣减")
+    @PostMapping(value = "/reduceStock2")
+    public void reduceStock2(Long goodsId, Integer reduceAmount) {
+        log.info("收到库存冲减请求，商品:{}, 数量:{}", goodsId, reduceAmount);
+        stockService.updateStock(goodsId, reduceAmount);
+    }
 }
