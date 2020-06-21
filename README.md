@@ -67,7 +67,7 @@ alibaba:
 http://localhost:18002/order/createOrder?orderNumber=1&amount=1&price=1232&customerId=1&goodsId=1&goodsName=name
 ```
 
->分布式事务和并发访问
+>返回结果
 ```json
 {
   "code": 1,
