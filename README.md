@@ -23,12 +23,12 @@ config {
 
 ```
 
->添加 @GlobalTransactional注解在方法上，开启全局事务
+#### 添加 @GlobalTransactional注解在方法上，开启全局事务
 ```text
 @GlobalTransactional
 ```
 
-> FeignClient调用库存服务
+#### FeignClient调用库存服务
 ```java
 @FeignClient(name = "stock-service", url = "127.0.0.1:18003")
 public interface StorageFeignClient {
@@ -50,7 +50,49 @@ public interface StorageFeignClient {
                                 @RequestParam("reduceAmount") Integer reduceAmount);
 }
 ```
->配置分布式事务组
+
+#### 模拟创建订单时，检测库存；创建订单成功，库存同时扣减
+
+```java
+@GlobalTransactional
+@Override
+public Boolean createOrder(Order order)throws Exception{
+        try{
+        log.info("[createOrder] 当前 XID: {}",RootContext.getXID());
+        //判断订单数量是否合法
+        if(order==null||order.getAmount()<=0){
+        throw new Exception("订单非法");
+        }
+        //判断库存 是否充足
+        Integer inputStock=order.getAmount();
+        // 执行调用
+        StockDto stockDto=feignClient.queryStock(order.getGoodsId());
+        if(stockDto==null){
+        throw new RuntimeException("扣除库存失败");
+        }
+        log.info("response:{}",stockDto);
+        if(stockDto==null){
+        throw new Exception("获取库存失败");
+        }
+        if(stockDto.getStockAmount()<=0||stockDto.getStockAmount()<inputStock){
+        throw new Exception("库存不足");
+        }
+        //save order
+        orderRepository.save(order);
+        //扣减库存
+        feignClient.reduceStock(order.getGoodsId(),inputStock);
+        return true;
+        }catch(Exception exception){
+        log.error("ex:{}",exception.getMessage());
+        exception.printStackTrace();
+        throw exception;
+        }
+        }
+
+```
+
+> 配置分布式事务组
+
 ```text
 #配置分布式事务组,要在spring下
 cloud:
